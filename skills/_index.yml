@@ -1,0 +1,20 @@
+generated: '2026-08-04'
+method: generated
+source: a2a/finite-state-agent-card.json (verified live against
+  https://finitestate.io/api/a2a on 2026-08-04)
+note: 'Skills are grounded exclusively in the four real, allowlisted A2A methods.
+  No skill is written for the Finite State Platform REST API or the GraphQL API,
+  because their contracts are auth-gated and no operationIds could be verified.'
+skills:
+- file: finite-state-browse-content.md
+  name: Browse and retrieve Finite State content
+  api: a2a/finite-state-agent-card.json
+  operations: [content.list, content.get]
+- file: finite-state-search-content.md
+  name: Search Finite State content
+  api: a2a/finite-state-agent-card.json
+  operations: [content.search, content.get]
+- file: finite-state-discover-surface.md
+  name: Discover the Finite State agent surface
+  api: a2a/finite-state-agent-card.json
+  operations: [content.metadata]

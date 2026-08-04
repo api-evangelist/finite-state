@@ -1,0 +1,83 @@
+generated: '2026-08-04'
+method: searched
+source: https://pypi.org/pypi/finite-state-sdk/json, https://github.com/FiniteStateInc
+packages:
+- language: python
+  registry: pypi
+  name: finite-state-sdk
+  version: 0.1.15
+  url: https://pypi.org/project/finite-state-sdk/
+  install: pip install finite-state-sdk
+  repository: https://github.com/FiniteStateInc/finite-state-sdk-python
+  summary: The official Finite State Python SDK.
+  official: true
+  note: wraps the GraphQL API at https://platform.finitestate.io/api/v1/graphql;
+    handles the client-credentials token exchange and chunked binary upload
+registries_checked:
+- registry: npm
+  result: none
+  note: an npm registry search for "finite-state" returned only unrelated
+    finite-state-machine libraries; no FiniteStateInc-published package found
+- registry: pypi
+  result: 1 official package
+- registry: maven-central
+  result: none
+  note: the Jenkins plugins are distributed through the Jenkins update centre
+    rather than Maven Central
+- registry: nuget
+  result: none
+- registry: rubygems
+  result: none
+- registry: crates.io
+  result: none
+- registry: packagist
+  result: none
+- registry: pkg.go.dev
+  result: none
+distribution_not_in_a_package_registry:
+- name: fs-cli
+  kind: cli
+  install: 'curl -fsSL https://raw.githubusercontent.com/FiniteStateInc/customer-resources/main/02-ci-cd-automation/fs-cli/install.sh
+    | sh'
+  windows_install: irm https://raw.githubusercontent.com/FiniteStateInc/customer-resources/main/02-ci-cd-automation/fs-cli/install.ps1
+    | iex
+  url: https://docs.finitestate.io/docs/install-cli
+  official: true
+  note: signed binaries with SHA-256 checksum verification; also downloadable from
+    the platform UI and from an authenticated endpoint at
+    https://$FS_ENDPOINT/api/public/v0/cli/download
+- name: finite-state-actions
+  kind: github-action
+  url: https://github.com/FiniteStateInc/finite-state-actions
+  official: true
+  summary: GitHub Actions to upload firmware for analysis, gate PRs on findings,
+    and export SBOMs from CI/CD
+- name: binary-scan
+  kind: github-action
+  url: https://github.com/FiniteStateInc/binary-scan
+  official: true
+- name: third-party-upload
+  kind: github-action
+  url: https://github.com/FiniteStateInc/third-party-upload
+  official: true
+- name: finite-state-analysis
+  kind: jenkins-plugin
+  url: https://plugins.jenkins.io/finite-state-analysis/
+  repository: https://github.com/FiniteStateInc/finite-state-jenkins-plugin
+  official: true
+- name: binary-scan-jenkins
+  kind: jenkins-plugin
+  url: https://github.com/FiniteStateInc/binary-scan-jenkins
+  official: true
+- name: third-party-upload-jenkins
+  kind: jenkins-plugin
+  url: https://github.com/FiniteStateInc/third-party-upload-jenkins
+  official: true
+- name: binary-scan-ado
+  kind: azure-devops-task
+  url: https://github.com/FiniteStateInc/binary-scan-ado
+  official: true
+- name: third-party-scan-ado
+  kind: azure-devops-task
+  url: https://github.com/FiniteStateInc/third-party-scan-ado
+  official: true

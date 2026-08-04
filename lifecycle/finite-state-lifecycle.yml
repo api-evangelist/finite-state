@@ -1,0 +1,63 @@
+generated: '2026-08-04'
+method: searched
+source: https://docs.finitestate.io/changelog; https://status.finitestate.io;
+  https://docs.finitestate.io/docs/command-line-interface/v1/;
+  https://docs.finitestate.io/docs/getting-started/credentials-setup/
+versioning:
+- surface: finite-state:platform-api
+  scheme: uri-path
+  current: v0
+  base: https://app.finitestate.io/api/public/v0
+- surface: finite-state:graphql-api
+  scheme: uri-path
+  current: v1
+  base: https://platform.finitestate.io/api/v1/graphql
+  status: legacy
+  note: still the transport used by the official Python SDK; an anonymous POST to
+    the documented endpoint returned 404 on 2026-08-04
+- surface: finite-state:a2a-content-api
+  scheme: protocol-version header and agent-card field
+  current: '0.3'
+  card_version: 1.1.0
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: Finite State publishes no formal API deprecation or sunset policy, but it
+    does document tool-level deprecations with migration guidance.
+  observed_deprecations:
+  - id: java-clt
+    what: The legacy Java command-line tool (CLT) and its FINITE_STATE_AUTH_TOKEN /
+      FINITE_STATE_DOMAIN credential setup
+    status: deprecated
+    replacement: fs-cli
+    migration_guide: https://docs.finitestate.io/docs/reference/legacy/clt-to-cli-migration-assistant
+  - id: fs-cli-v1
+    what: fs-cli v1
+    status: end-of-life
+    detail: v2.0.17 is the final v1 release; the tool auto-upgrades to v2.3.x on
+      first run against an upgraded platform
+    replacement: fs-cli v2
+    docs: https://docs.finitestate.io/docs/command-line-interface/v2
+  - id: legacy-cli-flags
+    what: camelCase flags (--pipFile, --toolOptions) and legacy commands (--scan,
+      --binary, --upload)
+    status: deprecated-with-warning
+    detail: still mapped to their kebab-case equivalents but emit deprecation
+      warnings
+status_page: https://status.finitestate.io
+status_page_verified: '2026-08-04'
+status_docs: https://docs.finitestate.io/docs/settings/status
+sla:
+  url: null
+  uptime_target: null
+  note: no public SLA or uptime target published
+changelog:
+  url: https://docs.finitestate.io/changelog
+  cadence: continuous, dated entries
+  archive: https://docs.finitestate.io/changelog/archive
+  see: changelog/finite-state-changelog.yml
+deprecated_operations: []
+gaps:
+- No published API deprecation policy or sunset window.
+- No RFC 8594 Sunset / Deprecation header support observed or documented.
+- No public SLA.

@@ -1,0 +1,109 @@
+generated: '2026-08-04'
+method: probed
+source: anonymous HTTP probes of every apis.yml host on 2026-08-04
+note: 'finitestate.io and app.finitestate.io are Next.js single-page applications
+  and docs.finitestate.io is Docusaurus; all three answer 200 with an HTML shell for
+  unknown paths. Every 200 below was therefore checked for a real parsed body, and
+  HTML-shell responses are recorded as soft_404: true rather than as hits.'
+hosts:
+- host: https://finitestate.io
+  documents:
+  - path: /.well-known/agent-card.json
+    status: 200
+    content_type: application/json
+    hit: true
+    file: ../a2a/finite-state-agent-card.json
+    spec: A2A agent card (canonical path)
+  - path: /.well-known/agent.json
+    status: 200
+    content_type: application/json
+    hit: true
+    file: ../a2a/finite-state-agent-card.json
+    spec: A2A agent card (pre-0.3 legacy path, byte-identical body)
+  - path: /.well-known/security.txt
+    status: 200
+    content_type: text/html
+    hit: false
+    soft_404: true
+    spec: RFC 9116
+  - path: /.well-known/api-catalog
+    status: 200
+    content_type: text/html
+    hit: false
+    soft_404: true
+    spec: RFC 9727
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    content_type: text/html
+    hit: false
+    soft_404: true
+- host: https://app.finitestate.io
+  documents:
+  - path: /.well-known/agent-card.json
+    status: 404
+    hit: false
+  - path: /.well-known/security.txt
+    status: 404
+    hit: false
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    hit: false
+    spec: RFC 8414
+  - path: /.well-known/openid-configuration
+    status: 404
+    hit: false
+    spec: OpenID Connect Discovery 1.0
+- host: https://platform.finitestate.io
+  documents:
+  - path: /.well-known/agent-card.json
+    status: 404
+    hit: false
+  - path: /.well-known/security.txt
+    status: 404
+    hit: false
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    hit: false
+  - path: /.well-known/openid-configuration
+    status: 404
+    hit: false
+- host: https://docs.finitestate.io
+  documents:
+  - path: /.well-known/agent-card.json
+    status: 200
+    content_type: text/html
+    hit: false
+    soft_404: true
+non_well_known_discovery:
+- path: /llms.txt
+  host: https://finitestate.io
+  status: 200
+  hit: true
+  file: ../llms/finite-state-llms.txt
+- path: /llms-full.txt
+  host: https://finitestate.io
+  status: 200
+  hit: true
+  file: null
+  note: fetched for reference only; *-llms-full.txt is gitignored network-wide
+- path: /sitemap.xml
+  host: https://finitestate.io
+  status: 200
+  hit: true
+  entries: 820
+- path: /rss.xml
+  host: https://finitestate.io
+  status: 200
+  hit: true
+- path: /indexnow-key.txt
+  host: https://finitestate.io
+  status: 200
+  hit: true
+  note: advertised in llms.txt alongside an /api/indexnow submission endpoint
+summary:
+  security_txt: false
+  openid_configuration: false
+  oauth_authorization_server: false
+  api_catalog: false
+  agent_card: true
+  llms_txt: true

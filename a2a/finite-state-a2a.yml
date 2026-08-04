@@ -1,0 +1,97 @@
+generated: '2026-08-04'
+method: probed
+source: https://finitestate.io/.well-known/agent-card.json
+discovery:
+  path: /.well-known/agent-card.json
+  canonical: true
+  host: finitestate.io
+  also_served_at:
+  - path: /.well-known/agent.json
+    canonical: false
+    http_status: 200
+    note: byte-identical to the canonical card (same MD5), served for pre-0.3 clients
+  misses:
+  - host: platform.finitestate.io
+    path: /.well-known/agent-card.json
+    http_status: 404
+  - host: app.finitestate.io
+    path: /.well-known/agent-card.json
+    http_status: 404
+  - host: docs.finitestate.io
+    path: /.well-known/agent-card.json
+    http_status: 200
+    rejected: true
+    reason: Docusaurus SPA catch-all returned an HTML shell, not an AgentCard object
+conformance:
+  spec: A2A 1.0.0
+  grade: conformant
+  protocol_version: '0.3'
+  preferred_transport: null
+  hard_checks:
+    capabilities_is_object: true
+    protocol_version_present: true
+    skills_is_array: true
+  deviations:
+  - id: no-preferredTransport
+    detail: top-level preferredTransport is absent; transport is expressed inside
+      interfaces[].protocolBinding (JSONRPC)
+  - id: interfaces-not-additionalInterfaces
+    detail: uses an `interfaces` array rather than the A2A `additionalInterfaces`
+      field name
+  - id: nonstandard-legacySkills
+    detail: carries a `legacySkills` array duplicating the skills with per-method
+      parameter documentation; not an A2A field, but it is the only published
+      parameter contract for the four methods
+  - id: nonstandard-serviceEndpoints
+    detail: carries a `serviceEndpoints` map of skill id to URL; not an A2A field
+  - id: empty-security
+    detail: securitySchemes is an empty object and security is an empty array,
+      consistent with the endpoint being anonymous and read-only
+card:
+  name: Finite State
+  description: 'Product security platform: firmware analysis, SBOM management, software
+    supply chain security. A2A read-only API for blog, resources, videos, events,
+    podcasts, and news.'
+  url: https://finitestate.io/api/a2a
+  version: 1.1.0
+  provider:
+    organization: Finite State
+    url: https://finitestate.io
+  skills: 4
+  skill_ids:
+  - content.list
+  - content.get
+  - content.search
+  - content.metadata
+  capabilities:
+    streaming: false
+    pushNotifications: false
+    stateTransitionHistory: false
+    extendedAgentCard: false
+  default_input_modes:
+  - application/json
+  default_output_modes:
+  - application/json
+  file: finite-state-agent-card.json
+endpoint:
+  url: https://finitestate.io/api/a2a
+  transport: JSONRPC
+  live: true
+  anonymous: true
+  methods_allowed:
+  - POST
+  - OPTIONS
+  get_status: 405
+  observed_headers:
+    x-a2a-version: '0.3'
+    access-control-allow-origin: '*'
+    access-control-allow-headers: Content-Type, A2A-Version, X-A2A-Version
+    cache-control: no-store
+    strict-transport-security: max-age=63072000
+  note: verified by an anonymous POST of content.metadata on 2026-08-04, which
+    returned a JSON-RPC 2.0 result with site feed URLs and per-type content counts
+x-evidence:
+  fetched: '2026-08-04'
+  url: https://finitestate.io/.well-known/agent-card.json
+  http_status: 200
+  content_type: application/json

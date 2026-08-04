@@ -1,0 +1,165 @@
+generated: '2026-08-04'
+method: probed
+source: live anonymous responses from https://finitestate.io/api/a2a (content.list,
+  content.metadata) on 2026-08-04; entity names from
+  https://github.com/FiniteStateInc/finite-state-sdk-python
+note: 'Two disjoint data models. The content model is fully observable — every field
+  below was read off a real A2A response. The platform model is named from the
+  official SDK''s GraphQL query set; its field-level shape is behind authentication
+  and is NOT reproduced here.'
+models:
+- id: content
+  surface: finite-state:a2a-content-api
+  observability: public, verified field-by-field
+  envelope:
+    list_response: {items: array, total: integer, limit: integer, offset: integer,
+      hasMore: boolean}
+  entities:
+  - name: post
+    label: Blog post
+    count_at_capture: 445
+    identifier: _id (uuid) + slug
+    fields: [_id, author, authorAvatar, categories, date, excerpt, image, imageAlt,
+      slug, tags, title, url]
+  - name: resource
+    label: Resource / datasheet / guide
+    count_at_capture: 81
+    identifier: _id (uuid) + slug
+    fields: [_id, categories, date, description, gated, image, imageAlt,
+      resourceType, slug, tags, title, url]
+  - name: video
+    label: Video
+    count_at_capture: 114
+    identifier: _id (uuid) + slug
+    fields: [_id, categories, date, description, duration, durationFormatted,
+      featured, image, imageAlt, quality, slug, tags, title, url, views]
+  - name: event
+    label: Event
+    count_at_capture: 45
+    identifier: _id (uuid) + slug
+    fields: [_id, city, country, description, end, eventType, format, image,
+      imageAlt, registrationUrl, slug, start, tags, timezone, timezoneIana,
+      timezoneLabel, title, url, venue]
+  - name: podcast
+    label: Podcast
+    count_at_capture: 0
+    identifier: _id (uuid) + slug
+    fields: unknown
+    note: declared as a content type by content.metadata but currently empty
+  - name: pressArticle
+    label: Press article / news item
+    count_at_capture: 77
+    identifier: _id (uuid) + slug
+    fields: [_id, author, category, date, excerpt, externalUrl, featured, image,
+      imageAlt, slug, status, tags, title, url]
+  relationships:
+  - from: post
+    to: category
+    kind: has_many
+    via: categories
+  - from: post
+    to: tag
+    kind: has_many
+    via: tags
+  - from: resource
+    to: category
+    kind: has_many
+    via: categories
+  - from: video
+    to: category
+    kind: has_many
+    via: categories
+  - from: event
+    to: tag
+    kind: has_many
+    via: tags
+  - from: pressArticle
+    to: category
+    kind: has_one
+    via: category
+  shared_conventions:
+  - every entity carries _id, slug, title, url, image, imageAlt and tags
+  - slug is the lookup key for content.get, paired with the type discriminator
+- id: platform
+  surface: finite-state:graphql-api and finite-state:platform-api
+  observability: authenticated only — entity names are published in the official
+    SDK, field shapes are not public
+  entities:
+  - name: Organization
+    source_query: GetOrganizations_SDK
+  - name: BusinessUnit
+    source_query: GetBusinessUnits_SDK
+  - name: User
+    source_query: GetUsers_SDK
+  - name: Product
+    source_query: GetAllProducts_SDK / GetProducts / GetProductsBusinessUnit
+  - name: Asset
+    source_query: GetAllAssets_SDK
+  - name: AssetVersion
+    source_query: GetAllAssetVersions_SDK / GetProductAssetVersions_SDK /
+      OneProductAllAssetVersions
+  - name: Artifact
+    source_query: GetAllArtifacts_SDK
+  - name: Finding
+    source_query: GetFindingsForAnAssetVersion_SDK / GetFindingsCount_SDK
+  - name: SoftwareComponent
+    source_query: GetSoftwareComponentsForAnAssetVersion_SDK
+  - name: Export
+    source_query: GenerateExportDownloadPresignedUrl_SDK
+  relationships:
+  - from: Organization
+    to: BusinessUnit
+    kind: has_many
+    via: organization_context
+    confidence: high
+  - from: BusinessUnit
+    to: Product
+    kind: has_many
+    via: business_unit_id
+    confidence: high
+    evidence: create_artifact accepts business_unit_id and product_id
+  - from: Product
+    to: AssetVersion
+    kind: has_many
+    via: product_id
+    confidence: high
+    evidence: GetProductAssetVersions_SDK / OneProductAllAssetVersions
+  - from: Asset
+    to: AssetVersion
+    kind: has_many
+    via: asset_id
+    confidence: high
+  - from: AssetVersion
+    to: Artifact
+    kind: has_many
+    via: asset_version_id
+    confidence: high
+    evidence: create_artifact accepts asset_version_id
+  - from: AssetVersion
+    to: Finding
+    kind: has_many
+    via: asset_version_id
+    confidence: high
+    evidence: GetFindingsForAnAssetVersion_SDK
+  - from: AssetVersion
+    to: SoftwareComponent
+    kind: has_many
+    via: asset_version_id
+    confidence: high
+    evidence: GetSoftwareComponentsForAnAssetVersion_SDK
+  - from: Artifact
+    to: User
+    kind: belongs_to
+    via: created_by_user_id
+    confidence: high
+  mutations:
+  - UpdateFindingsStatuses_SDK
+  - LaunchCycloneDxExport_SDK
+  - LaunchSpdxExport_SDK
+  - LaunchArtifactCSVExport_SDK
+  - LaunchArtifactPDFExport_SDK
+  - LaunchProductCSVExport_SDK
+gaps:
+- The platform entity field shapes, id formats and enums are only visible inside the
+  authenticated per-organization Swagger UI at https://[org].finitestate.io/swagger.
+- No public object reference page in the documentation.

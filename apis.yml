@@ -1,18 +1,89 @@
 aid: finite-state
 name: Finite State
-description: 'Finite State is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: 'Finite State is a product security platform for connected-device and
+  embedded software manufacturers. It performs binary and firmware composition analysis,
+  source-code scanning and third-party scan ingestion, SBOM generation and lifecycle
+  management (CycloneDX and SPDX), VEX, EPSS- and reachability-based vulnerability
+  prioritization, license-policy enforcement, and evidence-backed compliance reporting
+  for regimes such as the EU Cyber Resilience Act, FDA 524B, ISO 21434 and IEC 62443.
+  Programmatic access is offered through a token-authenticated REST API on the platform
+  host, a legacy GraphQL API with an official Python SDK, the fs-cli command-line
+  tool, and CI/CD integrations for GitHub Actions, Jenkins and Azure DevOps. Finite
+  State also publishes an anonymous, read-only A2A JSON-RPC content API described
+  by an agent card at its canonical well-known path.'
+image: https://finitestate.io/images/backgrounds/hero-space.jpg
 url: https://raw.githubusercontent.com/api-evangelist/finite-state/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-08-04'
 modified: '2026-08-04'
 tags:
-- Company
-apis: []
+- Product Security
+- Software Supply Chain Security
+- SBOM
+- Firmware Analysis
+- Vulnerability Management
+- Binary Analysis
+- Connected Devices
+- Compliance
+- Cybersecurity
+- IoT
+apis:
+- aid: finite-state:platform-api
+  name: Finite State Platform API
+  description: 'Token-authenticated REST API for the Finite State platform, served
+    under /api/public/v0 on the platform host. Interactive Swagger documentation is
+    published per organization at https://[org].finitestate.io/swagger and the underlying
+    OpenAPI document is served at /api/docs/openapi.json. Both the spec and every
+    operation sit behind an API token, so no machine-readable contract is retrievable
+    anonymously.'
+  humanURL: https://docs.finitestate.io/docs/dev-tools/finite-state-api/
+  baseURL: https://app.finitestate.io/api/public/v0
+  tags:
+  - Product Security
+  - SBOM
+  - Vulnerability Management
+  properties:
+  - type: Documentation
+    url: https://docs.finitestate.io/docs/dev-tools/finite-state-api/
+  - type: APIReference
+    url: https://docs.finitestate.io/docs/dev-tools/finite-state-api/
+  - type: Authentication
+    url: authentication/finite-state-authentication.yml
+- aid: finite-state:a2a-content-api
+  name: Finite State A2A Content API
+  description: 'Public, anonymous, read-only JSON-RPC 2.0 API exposing Finite State''s
+    published content: blog posts, resources, videos, events, podcasts and press articles.
+    Four allowlisted methods (content.list, content.get, content.search, content.metadata)
+    are described by an A2A agent card served from the canonical well-known path.
+    POST only; GET returns 405.'
+  humanURL: https://finitestate.io/.well-known/agent-card.json
+  baseURL: https://finitestate.io/api/a2a
+  tags:
+  - Content
+  - Agents
+  - A2A
+  properties:
+  - type: AgentCard
+    url: a2a/finite-state-a2a.yml
+- aid: finite-state:graphql-api
+  name: Finite State GraphQL API
+  description: 'GraphQL API historically documented at https://platform.finitestate.io/api/v1/graphql
+    and still the transport used by the official Python SDK, which authenticates via
+    a client-credentials exchange at /api/v1/auth/token and passes an organization
+    context on every request. An anonymous POST to the documented endpoint returned
+    404 on 2026-08-04, so the surface is recorded as legacy alongside the newer REST
+    API.'
+  humanURL: https://github.com/FiniteStateInc/finite-state-sdk-python
+  baseURL: https://platform.finitestate.io/api/v1/graphql
+  tags:
+  - GraphQL
+  - SBOM
+  - Vulnerability Management
+  properties:
+  - type: SourceCode
+    url: https://github.com/FiniteStateInc/finite-state-sdk-python
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -20,4 +91,67 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
-  url: https://forgeglobal.com/finite-state_stock/
+  url: https://finitestate.io
+- type: DeveloperPortal
+  url: https://docs.finitestate.io/
+- type: Documentation
+  url: https://docs.finitestate.io/docs/
+- type: APIReference
+  url: https://docs.finitestate.io/docs/dev-tools/finite-state-api/
+- type: GettingStarted
+  url: https://docs.finitestate.io/docs/get-started
+- type: Support
+  url: https://finitestate.io/support
+- type: Blog
+  url: https://finitestate.io/blog
+- type: BlogRSS
+  url: https://finitestate.io/rss.xml
+- type: GitHubOrganization
+  url: https://github.com/FiniteStateInc
+- type: Pricing
+  url: https://finitestate.io/pricing
+- type: SignUp
+  url: https://finitestate.io/request-demo
+- type: TermsOfService
+  url: https://finitestate.io/terms-of-use
+- type: PrivacyPolicy
+  url: https://finitestate.io/privacy-policy
+- type: StatusPage
+  url: https://status.finitestate.io
+- type: ChangeLog
+  url: https://docs.finitestate.io/changelog
+- type: AgentCard
+  url: a2a/finite-state-a2a.yml
+- type: LLMsTxt
+  url: llms/finite-state-llms.txt
+- type: WellKnown
+  url: well-known/finite-state-well-known.yml
+- type: Packages
+  url: packages/finite-state-packages.yml
+- type: SDKs
+  url: packages/finite-state-packages.yml
+- type: CLI
+  url: cli/finite-state-cli.yml
+- type: Authentication
+  url: authentication/finite-state-authentication.yml
+- type: Conventions
+  url: conventions/finite-state-conventions.yml
+- type: ErrorCatalog
+  url: errors/finite-state-problem-types.yml
+- type: Conformance
+  url: conformance/finite-state-conformance.yml
+- type: Lifecycle
+  url: lifecycle/finite-state-lifecycle.yml
+- type: Deprecation
+  url: lifecycle/finite-state-lifecycle.yml
+- type: DomainSecurity
+  url: security/finite-state-domain-security.yml
+- type: DataModel
+  url: data-model/finite-state-data-model.yml
+- type: AgentSkill
+  url: skills/_index.yml
+x-enrichment:
+  date: '2026-08-04'
+  status: enriched
+  artifacts_added: 19
+  pass: local-v1

@@ -1,0 +1,71 @@
+# Finite State
+> One platform that automates the entire lifecycle to design, verify, and prove - all grounded in what you ship.
+
+## Critical Messaging
+- One Platform Zero Blind Spots
+- Secure every release. Prove compliance continuously. Automate the work in between.
+
+## Contact
+- General inquiries: [contact@finitestate.io](mailto:contact@finitestate.io)
+- [Website](https://finitestate.io)
+
+## What We Do Not Do
+- Expose private customer data, credentials, or internal systems through public discovery files.
+- Provide write-capable public A2A methods; published A2A methods are read-only.
+- Treat public discovery files as legal, compliance, or incident-response advice.
+
+## Services
+- [Blog](https://finitestate.io/blog)
+- [Resources](https://finitestate.io/resources)
+- [Videos](https://finitestate.io/resources/videos)
+- [Events](https://finitestate.io/events)
+- [Podcasts](https://finitestate.io/podcasts)
+- [News](https://finitestate.io/news)
+
+## Key Information
+- [Home](https://finitestate.io)
+- [Careers](https://finitestate.io/careers)
+
+## Datasheets
+- [Finite State vs. Snyk](https://finitestate.io/resources/finite-state-vs-snyk): Why product security teams building connected devices choose Finite State.
+- [Finite State vs. Black Duck](https://finitestate.io/resources/finite-state-vs-black-duck): Why product security teams building connected devices choose Finite State.
+- [The Parallel Rail](https://finitestate.io/resources/the-parallel-rail-brief): AI is shortening the connected device development cycle. The attack surface no longer maps to a catalog of known components. Most product security programs wer…
+- [Product Security OS for Medical Devices](https://finitestate.io/resources/product-security-os-for-medical-devices): Finite State's Product Security OS helps medical device manufacturers meet all six FDA 524B(b) cybersecurity requirements — including threat modeling, SBOM gen…
+- [CRA Managed Services](https://finitestate.io/resources/cra-managed-services): Finite State's managed service helping manufacturers achieve EU Cyber Resilience Act compliance through automated SBOMs, risk assessments, and continuous vulne…
+- [Introducing Product Security OS for Connected Devices](https://finitestate.io/resources/finite-state-product-security-os-datasheet): Finite State’s Product Security OS connects firmware, binaries, source code, and documentation into a single system of record. Automate threat modeling, reduce…
+- [Finite State vs Cybellum](https://finitestate.io/resources/finite-state-vs-cybellum): Compare Finite State vs. Cybellum for connected device security: deeper binary analysis, reachability-based triage, SBOM lifecycle, and compliance automation.
+- [AUTOSAR Analysis: Deep ECU Visibility for OEMs](https://finitestate.io/resources/autosar-analysis-datasheet): See how expanded AUTOSAR detection uncovers modules, vendor metadata, & configuration details, enabling clearer SBOMs & stronger automotive cybersecurity.
+- [China GB 44495/44496 Compliance Guide for Connected Vehicles](https://finitestate.io/resources/china-gb-44495-44496-compliance-guide): Understand China’s GB 44495/44496 cybersecurity and software-update requirements and how OEMs can meet CSMS/SUMS compliance with SBOM-driven workflows.
+- [Driving Automotive Security Forward: The Finite State Platform Overview](https://finitestate.io/resources/finite-state-automotive-platform-overview): Discover how Finite State helps automotive manufacturers secure connected vehicles from firmware to software supply chains. Our platform enables visibility, vu…
+
+## Recent Updates
+- [IoT Tech Expo 2027 ](https://finitestate.io/events/iot-tech-expo-2027-): Visit Finite State at Booth #1020 to learn how connected device manufacturers know what they ship, prioritize real exposure, and automate SBOMs, VEX, traceabil…
+- [CES 2027](https://finitestate.io/events/ces-2027): Visit us at CES 2027 to see how Finite State transforms product artifacts into audit-ready assurance through a single automated workflow, helping connected dev…
+- [Auto ISAC Cybersecurity Summit 2026 ](https://finitestate.io/events/auto-isac-cybersecurity-summit-2026-): Meet with Finite State at Auto-ISAC Cybersecurity Summit to see how automotive organizations are reducing vulnerability noise, accelerating PSIRT response, and…
+- [Embedded World North America 2026](https://finitestate.io/events/embedded-world-north-america-2026): Meet Finite State at Embedded World North America to see how connected device teams unify firmware, binary, and source intelligence, prioritize real exposure,…
+- [Finite State Joins DEF CON 2026 with AI Offensive Security and RAISE Act Sessions and a Hands-On Manufacturing Incident Response Challenge](https://finitestate.io/news/finite-state-joins-def-con-2026-with-ai-offensive-security-and-raise-act-sessions-and-a-hands-on-manufacturing-incident-response)
+- [How does a vulnerability from the early 2000s compromise popular white-label consumer cameras in 2026?](https://finitestate.io/resources/iot-camera-supply-chain-vulnerability-research): Finite State's research team pulled apart a 2026 connected camera and found a 2002 vulnerability its whole supply chain missed. Read the full findings.
+- [A 20-Year-Old IoT Vulnerability Is Still Shipping in a 2026 Home Camera](https://finitestate.io/blog/20-year-old-vulnerability-2026-home-camera): A software flaw first disclosed in 2002 was still shipping inside a home security camera in 2026, sitting in plain sight because no one along the supply chain…
+- [From SBOM to Submission: Operationalizing CRA Vulnerability Handling](https://finitestate.io/resources/videos/sbom-to-submission-operationalizing-cra-vulnerability-handling): The September 11, 2026 CRA deadline is approaching. Join Finite State and ISMG to learn the practical steps manufacturers should take now to build a risk-based…
+- [Why AppSec SCA Tools Fail for Firmware](https://finitestate.io/blog/why-appsec-sca-fails-for-firmware): Source-based SCA misses the components compiled into firmware and flags CVEs on version numbers that no longer hold. See what reading the binary catches instea…
+- [Automating Product Security for a Global Networking and IoT Portfolio](https://finitestate.io/resources/networking-iot-product-security-scale-case-study): Facing regulatory reviews that threatened market access, a global networking and IoT manufacturer launched its largest-ever product security initiative with Fi…
+- [Trust but Verify: A Practical Guide to Supplier SBOM Validation](https://finitestate.io/blog/trust-but-verify-supplier-sbom): Supplier SBOMs are often incomplete. Here's why manufacturers verify them against the actual binaries, and how that holds up under CRA, FDA, ISO 21434, and IEC…
+- [EPSS and CRA Triage: What to Do When a Vulnerability Lands](https://finitestate.io/blog/epss-cra-vulnerability-triage): Under the CRA, vulnerability triage is a risk-based, documented decision. See how EPSS and reachability show which CVEs warrant action and which can wait.
+- [Firmware Binary Analysis: The Complete Guide](https://finitestate.io/resources/firmware-binary-analysis-guide): Firmware binary analysis examines the compiled image you actually ship, to surface the components, CVEs, secrets, and weak crypto that source scans and manifes…
+- [Finite State Finds 20-Year-Old Vulnerabilities in Wi-Fi Camera](https://finitestate.io/news/finite-state-finds-20-year-old-vulnerabilities-in-wifi-camera): Finite State researchers have found a 2026 consumer camera that’s been shipping with a web server vulnerability first disclosed more than 20 years ago.
+- [Finite State Wins the 2026 IoT Industrial Solutions Award](https://finitestate.io/news/finite-state-wins-the-2026-iot-industrial-solutions-award): Recognition Honors Technologies Advancing Security, Reliability, and Operational Visibility Across Industrial Environments.
+- [Finite State CSO Sharon Hagi To Present Auto-ISAC Europe Cybersecurity Workshop Keynote “AI Closes the Window: Automotive Supply Chain Security in an Accelerated Threat Environment”](https://finitestate.io/news/finite-state-cso-sharon-hagi-to-present-auto-isac-europe)
+- [Why Bottom-Up Vulnerability Management Breaks at Scale](https://finitestate.io/resources/videos/bottom-up-vulnerability-management-at-scale): Bottom-up vulnerability tracking works for small teams—but breaks at scale. Learn how fragmentation impacts prioritization, compliance, and security resources.
+- [Breaking Down Silos in Product Security and Compliance](https://finitestate.io/resources/videos/breaking-down-product-security-silos): Siloed teams and one-off tools create outdated compliance. Learn why connected device security needs a continuous, cross-functional workflow.
+- [Why Controls-Only Compliance Fails Connected Device Security](https://finitestate.io/resources/videos/controls-only-compliance-connected-devices): Controls assessments and gap analyses aren’t enough. Learn why compliance must connect security controls to real firmware, releases, and shipped software.
+
+## AI Discovery Files
+- [llms.txt](https://finitestate.io/llms.txt)
+- [llms-full.txt](https://finitestate.io/llms-full.txt)
+- [Sitemap](https://finitestate.io/sitemap.xml)
+- [RSS](https://finitestate.io/rss.xml)
+- [IndexNow key](https://finitestate.io/indexnow-key.txt)
+- [IndexNow API](https://finitestate.io/api/indexnow)
+- [Agent card (A2A current)](https://finitestate.io/.well-known/agent-card.json)
+- [Agent card](https://finitestate.io/.well-known/agent.json)
+- [A2A API](https://finitestate.io/api/a2a)

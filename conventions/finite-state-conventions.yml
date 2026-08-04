@@ -1,0 +1,99 @@
+generated: '2026-08-04'
+method: searched
+source: https://docs.finitestate.io/docs/dev-tools/finite-state-api/;
+  https://docs.finitestate.io/docs/settings/api-tokens/;
+  https://github.com/FiniteStateInc/finite-state-sdk-python; live probes of
+  https://finitestate.io/api/a2a and https://app.finitestate.io/api/public/v0/
+note: 'Cross-cutting semantics for the Finite State surfaces. The REST OpenAPI is
+  auth-gated, so REST conventions below are documented or observed rather than read
+  out of a spec; anything not established is recorded as unknown rather than guessed.'
+authentication:
+  style: api-key header (X-Authorization) or bearer token; client-credentials OAuth2
+    for the legacy GraphQL API; anonymous for the A2A content API
+  see: authentication/finite-state-authentication.yml
+idempotency:
+  supported: unknown
+  header: null
+  note: No idempotency key, retry-safety, or exactly-once contract is documented on
+    any Finite State surface, and none is observable anonymously. Not asserted.
+pagination:
+  a2a_content_api:
+    style: limit-offset
+    params:
+      limit: max items to return, 1-100, default 10 (content.list); 1-50, default
+        20 (content.search)
+      offset: number of items to skip, default 0
+    sort_param: 'sort: newest | oldest | a-z | z-a'
+    filter_param: 'category (content.list); types (content.search)'
+    source: agent card legacySkills parameter documentation, verified live
+  graphql_api:
+    style: cursor/page-size
+    default_page_size: declared as DEFAULT_PAGE_SIZE in the SDK query module
+    source: https://github.com/FiniteStateInc/finite-state-sdk-python
+  rest_api:
+    style: unknown
+    note: not observable anonymously
+field_selection:
+  expansion: unknown
+  sparse_fieldsets: unknown
+  note: the GraphQL API provides field selection natively
+metadata:
+  custom_metadata_supported: unknown
+request_tracing:
+  header: null
+  response_field: requestId
+  format: uuid
+  note: every observed REST error body carries a requestId UUID; no request-id
+    request header is documented
+versioning:
+  rest:
+    scheme: uri-path
+    current: v0
+    path: /api/public/v0
+  graphql:
+    scheme: uri-path
+    current: v1
+    path: /api/v1/graphql
+    status: legacy
+  a2a:
+    scheme: header + card field
+    current: '0.3'
+    header: x-a2a-version
+    card_version: 1.1.0
+  see: lifecycle/finite-state-lifecycle.yml
+error_envelope:
+  rest: '{valid, errors[{error, instanceLocation, keywordLocation}], requestId}'
+  a2a: JSON-RPC 2.0 error object, returned with HTTP 200
+  rfc9457: false
+  see: errors/finite-state-problem-types.yml
+rate_limiting:
+  documented: false
+  response_headers_observed: none
+  note: no RateLimit-* or X-RateLimit-* headers were returned by the A2A endpoint;
+    no rate-limit policy is published for the REST or GraphQL API
+caching:
+  a2a: 'cache-control: no-store'
+transport:
+  tls: HTTPS enforced; HSTS observed on finitestate.io (max-age=63072000)
+  cors:
+    a2a: 'access-control-allow-origin: *; allowed methods POST, OPTIONS; allowed
+      headers Content-Type, A2A-Version, X-A2A-Version'
+  http_methods:
+    a2a: POST only (GET returns 405)
+    graphql: POST only per documentation; GET/PUT return 400 or 406
+upload_conventions:
+  chunked_upload:
+    default_chunk_size: 1000 MiB
+    max_chunk_size: 2000 MiB
+    min_chunk_size: 5 MiB
+    source: finite_state_sdk/__init__.py constants
+  upload_methods: [WEB_APP_UI, API, GITHUB_INTEGRATION, AZURE_DEVOPS_INTEGRATION]
+sbom_formats:
+  ingest: [CycloneDX, SPDX]
+  export: [CycloneDX, SPDX, CSV, PDF]
+  see: conformance/finite-state-conformance.yml
+cross_links:
+  authentication: authentication/finite-state-authentication.yml
+  errors: errors/finite-state-problem-types.yml
+  lifecycle: lifecycle/finite-state-lifecycle.yml
+  data_model: data-model/finite-state-data-model.yml

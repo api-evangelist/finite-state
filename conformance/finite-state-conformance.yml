@@ -1,0 +1,98 @@
+generated: '2026-08-04'
+method: probed
+source: live probes of https://finitestate.io/.well-known/agent-card.json and
+  https://finitestate.io/api/a2a; https://docs.finitestate.io/;
+  https://github.com/FiniteStateInc/finite-state-sdk-python
+note: 'Standards this provider''s own API surface conforms to. Finite State''s
+  product is a compliance tool for regimes such as the CRA and FDA 524B; those
+  regimes are recorded separately under product_domain_standards because they
+  describe what the platform helps customers achieve, not what its own API
+  conforms to.'
+standards:
+- id: a2a-agent-card
+  name: A2A Agent Card
+  conforms: true
+  evidence: conformant agent card served at the canonical
+    /.well-known/agent-card.json with capabilities as an object, protocolVersion
+    0.3 and skills as an array; also mirrored at the legacy /.well-known/agent.json
+  grade: conformant
+  see: a2a/finite-state-a2a.yml
+- id: jsonrpc-2.0
+  name: JSON-RPC 2.0
+  conforms: true
+  evidence: https://finitestate.io/api/a2a returns well-formed jsonrpc 2.0 result
+    and error objects, including the standard -32601 Method not found code
+- id: llms-txt
+  name: llms.txt
+  conforms: true
+  evidence: https://finitestate.io/llms.txt returns text/plain in llms.txt form
+    (H1, blockquote summary, link sections); llms-full.txt also served
+- id: rfc8615-well-known
+  name: RFC 8615 well-known URIs
+  conforms: partial
+  evidence: agent-card.json is served under /.well-known/; security.txt,
+    api-catalog and OIDC/OAuth metadata are all absent
+- id: rfc9116-security-txt
+  name: RFC 9116 security.txt
+  conforms: false
+  evidence: /.well-known/security.txt returns an SPA HTML shell on finitestate.io
+    and 404 on the platform hosts
+- id: rfc9457-problem-details
+  name: RFC 9457 Problem Details
+  conforms: false
+  evidence: no application/problem+json on any observed response; the REST API uses
+    a vendor {valid, errors[], requestId} envelope
+- id: rfc9727-api-catalog
+  name: RFC 9727 API catalog
+  conforms: false
+  evidence: /.well-known/api-catalog returns an SPA HTML shell, not a catalog
+- id: oauth2-client-credentials
+  name: OAuth 2.0 client credentials
+  conforms: true
+  evidence: the official Python SDK exchanges CLIENT_ID/CLIENT_SECRET at
+    https://platform.finitestate.io/api/v1/auth/token with the GraphQL endpoint as
+    the audience
+- id: oidc-discovery
+  name: OpenID Connect Discovery
+  conforms: false
+  evidence: /.well-known/openid-configuration returns 404 on every host
+- id: rfc8414-as-metadata
+  name: RFC 8414 authorization server metadata
+  conforms: false
+  evidence: /.well-known/oauth-authorization-server returns 404 on every host
+- id: openapi
+  name: OpenAPI
+  conforms: unknown
+  evidence: an OpenAPI document is served at
+    https://app.finitestate.io/api/docs/openapi.json and rendered by a per-tenant
+    Swagger UI, but it returns 401 to anonymous clients so its version and content
+    could not be verified
+- id: graphql
+  name: GraphQL
+  conforms: true
+  evidence: documented GraphQL API at /api/v1/graphql; introspection could not be
+    performed anonymously (the endpoint returned 404 without credentials)
+- id: hsts
+  name: HTTP Strict Transport Security
+  conforms: true
+  evidence: 'strict-transport-security: max-age=63072000 observed on finitestate.io'
+- id: cors
+  name: CORS
+  conforms: true
+  evidence: the A2A endpoint returns access-control-allow-origin * with POST and
+    OPTIONS allowed
+product_domain_standards:
+  note: standards the Finite State platform ingests, produces or helps customers
+    comply with — capability claims from the product documentation and marketing
+    surface, not conformance claims about this API
+  formats: [CycloneDX, SPDX, VEX, EPSS, CVE, CWE, purl]
+  regimes: [EU Cyber Resilience Act, FDA 524B, ISO 21434, IEC 62443, UN R155,
+    China GB 44495/44496, AUTOSAR]
+  source: https://finitestate.io/llms.txt, https://docs.finitestate.io/
+compliance_program:
+  published: false
+  certifications: []
+  trust_center: null
+  note: no trust centre, no /security or /trust page (both soft-404), and no
+    published SOC 2 / ISO 27001 attestation was found on the public surface as of
+    2026-08-04. No Compliance pointer is emitted.

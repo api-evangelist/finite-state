@@ -1,0 +1,83 @@
+generated: '2026-08-04'
+method: searched
+source: probed 401 responses from https://app.finitestate.io/api/public/v0/*;
+  https://docs.finitestate.io/docs/settings/api-tokens/;
+  https://docs.finitestate.io/docs/getting-started/credentials-setup/;
+  https://github.com/FiniteStateInc/finite-state-sdk-python
+docs: https://docs.finitestate.io/docs/settings/api-tokens/
+note: 'No OpenAPI could be retrieved anonymously — the spec at
+  https://app.finitestate.io/api/docs/openapi.json returns 401 — so this profile is
+  searched from documentation, the official Python SDK source, and the live 401
+  challenge, not derived from securitySchemes.'
+summary:
+  types: [apiKey, http, oauth2]
+  api_key_in: [header]
+  oauth2_flows: [clientCredentials]
+  anonymous_surfaces: [a2a-content-api]
+schemes:
+- name: PlatformApiToken
+  type: apiKey
+  in: header
+  parameter_name: X-Authorization
+  applies_to: finite-state:platform-api
+  source: live 401 challenge from https://app.finitestate.io/api/public/v0/
+  challenge_body: 'API key required. Provide via X-Authorization header or
+    Authorization: Bearer <token>'
+  description: User-scoped API token created in the platform settings UI. Tokens
+    are named, tied to an individual user account, and displayed masked (first and
+    last two characters only) after creation.
+- name: PlatformBearerToken
+  type: http
+  scheme: bearer
+  applies_to: finite-state:platform-api
+  source: live 401 challenge from https://app.finitestate.io/api/public/v0/
+  description: 'The same platform API token may be presented as an
+    "Authorization: Bearer <token>" header instead of X-Authorization.'
+- name: GraphQLClientCredentials
+  type: oauth2
+  applies_to: finite-state:graphql-api
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://platform.finitestate.io/api/v1/auth/token
+    audience: https://platform.finitestate.io/api/v1/graphql
+    scopes: {}
+  source: https://github.com/FiniteStateInc/finite-state-sdk-python (TOKEN_URL,
+    AUDIENCE constants in finite_state_sdk/__init__.py)
+  description: Client-credentials exchange using a CLIENT_ID and CLIENT_SECRET
+    issued by Finite State. The resulting bearer token is sent on each GraphQL
+    request together with an ORGANIZATION_CONTEXT UUID that scopes the request to
+    a tenant. No public scope catalogue is published.
+  additional_parameters:
+  - name: ORGANIZATION_CONTEXT
+    in: request
+    format: uuid
+    required: true
+    description: Tenant/organization identifier supplied by Finite State API
+      management
+- name: None
+  type: none
+  applies_to: finite-state:a2a-content-api
+  description: The A2A content API at https://finitestate.io/api/a2a is anonymous
+    and read-only. The agent card declares an empty securitySchemes object and an
+    empty security array, and an unauthenticated POST succeeds.
+  verified: '2026-08-04'
+cli_and_ci_credentials:
+  environment_variables: [FS_TOKEN, FINITE_STATE_AUTH_TOKEN, FS_ENDPOINT,
+    FINITE_STATE_DOMAIN]
+  credential_file: ~/.finitestate/credential
+  file_permissions: must not be readable by group or others
+token_hygiene:
+  rotation_policy_published: false
+  expiry_published: false
+  scopes_published: false
+  leak_response: 'Finite State may automatically disable any API key that has
+    leaked publicly.'
+  guidance: 'Do not share your API key with others or expose it in the browser or
+    other client-side code.'
+gaps:
+- No OpenID Connect discovery document at /.well-known/openid-configuration on any
+  host (404).
+- No OAuth authorization-server metadata at /.well-known/oauth-authorization-server
+  on any host (404).
+- No published scope or permission catalogue for either the REST or GraphQL API.
+- No documented token expiry or rotation policy.

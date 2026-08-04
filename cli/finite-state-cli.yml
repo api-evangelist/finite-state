@@ -1,0 +1,103 @@
+generated: '2026-08-04'
+method: searched
+source: https://docs.finitestate.io/docs/command-line-interface/v2/,
+  https://docs.finitestate.io/docs/command-line-interface/v1/,
+  https://docs.finitestate.io/docs/install-cli
+cli:
+  name: fs-cli
+  current_major: v2
+  summary: First-party command-line tool for scanning source dependencies, uploading
+    binaries and firmware, importing SBOMs, delivering third-party scan results, and
+    gating CI/CD pipelines against Finite State findings.
+install:
+- method: script
+  platform: macos-linux
+  command: 'curl -fsSL https://raw.githubusercontent.com/FiniteStateInc/customer-resources/main/02-ci-cd-automation/fs-cli/install.sh
+    | sh'
+  note: verifies SHA-256 checksums; installs to /usr/local/bin or ~/.local/bin;
+    override with INSTALL_DIR
+- method: script
+  platform: windows
+  command: irm https://raw.githubusercontent.com/FiniteStateInc/customer-resources/main/02-ci-cd-automation/fs-cli/install.ps1
+    | iex
+  note: installs to %LOCALAPPDATA%\Programs\fs-cli
+- method: platform-download
+  note: binary is downloadable from the Finite State platform UI
+- method: api-download
+  endpoint: https://$FS_ENDPOINT/api/public/v0/cli/download
+  note: authenticated endpoint for scripted/automated environments
+- method: self-update
+  command: fs-cli update
+commands:
+- name: scan
+  summary: Scan a directory for source-code dependencies and produce an SBOM-grade
+    inventory
+- name: upload
+  summary: Upload a binary or firmware artifact for analysis
+- name: import
+  summary: Import an existing CycloneDX or SPDX SBOM
+- name: third-party
+  summary: Upload results from external analysis tools (for example Snyk, Coverity,
+    Checkmarx)
+- name: deliver
+  summary: Deliver previously saved scan output, for airgapped workflows
+- name: query
+  summary: Check scan status or apply a CI gate
+  since: v2
+- name: update
+  summary: Self-upgrade the binary in place
+- name: version
+  summary: Print the installed CLI version
+key_flags:
+- flag: --name / --project
+  required: true
+  summary: Project identifier
+- flag: --version
+  summary: Version string for release tracking
+- flag: --release
+  summary: Create a clean version snapshot
+- flag: --all / --deep
+  summary: Recursively scan subdirectories
+- flag: --scope
+  values: [runtime, all]
+  summary: Dependency scope
+- flag: --output
+  values: [platform, file, legacy, helix]
+  summary: Output adapter
+- flag: --test
+  summary: Dry run without uploading
+- flag: --endpoint / --token
+  summary: API endpoint and auth token overrides
+- flag: --no-update-check
+  summary: Disable the auto-update check (also FS_SKIP_UPDATE=1)
+configuration:
+  precedence:
+  - cli flags
+  - environment variables
+  - credential file
+  - built-in defaults
+  environment_variables:
+  - FS_TOKEN
+  - FINITE_STATE_AUTH_TOKEN
+  - FS_ENDPOINT
+  - FINITE_STATE_DOMAIN
+  - FS_PROJECT_NAME
+  - FS_SKIP_UPDATE
+  credential_file:
+    posix: ~/.finitestate/credential
+    windows: '%USERPROFILE%\.finitestate\credential'
+    format: key=value pairs — endpoint= and token=
+    permissions: must not be readable by group or others (0600 on POSIX)
+  default_endpoint: app.finitestate.io
+ecosystems_supported:
+  build_tool_execution: [maven, gradle, sbt, go]
+  lock_file_parsing: [cargo, poetry, uv, npm, yarn, pnpm, pip, composer, bundler,
+    dotnet, cocoapods, swift-package-manager, conan, conda, docker]
+  count: 19
+lifecycle:
+  note: v2.0.17 is the final v1 release; the tool auto-upgrades to v2.3.x on first
+    run against an upgraded platform. Legacy camelCase flags (--pipFile,
+    --toolOptions) map to kebab-case equivalents and legacy commands (--scan,
+    --binary, --upload) emit deprecation warnings. The older Java CLT is deprecated
+    in favour of fs-cli.
+  migration_guide: https://docs.finitestate.io/docs/reference/legacy/clt-to-cli-migration-assistant

@@ -1,0 +1,99 @@
+generated: '2026-08-04'
+method: searched
+source: https://docs.finitestate.io/changelog
+changelog:
+  url: https://docs.finitestate.io/changelog
+  archive: https://docs.finitestate.io/changelog/archive
+  format: dated blog-style entries (Docusaurus), paginated
+  pages: 5
+  scheme: dated, not semantically versioned
+  current_version: null
+  note: 'Finite State versions its platform by dated release notes rather than a
+    published semantic version. Entries cover the platform, its APIs and the CLI
+    together. This is the recent window only; the live changelog is the source of
+    truth.'
+entries:
+- date: '2026-07-31'
+  title: Kernel Reachability, Scan Accuracy, and Reliability Improvements
+  url: https://docs.finitestate.io/changelog/kernel-reachability-scan-accuracy-and-reliability-improvements
+  breaking: false
+  highlights:
+  - Expanded kernel analysis capability
+  - Improved component-search performance
+  - Resolved false-positive detections
+  - Fixed scan enrichment so large scans no longer block other processing
+- date: '2026-07-30'
+  title: Scan Enrichment Fix for Large Scans
+  url: https://docs.finitestate.io/changelog/scan-enrichment-reliability
+  breaking: false
+  highlights:
+  - Vulnerability intelligence is now applied consistently to very large scans, so
+    CVE data processes completely
+- date: '2026-07-29'
+  title: Vulnerability Search and Platform Reliability Fixes
+  url: https://docs.finitestate.io/changelog/vulnerability-search-and-platform-reliability-fixes
+  breaking: false
+  api_affecting: true
+  highlights:
+  - Resolved instability in the Findings and Components APIs for larger organizations
+  - Corrected search errors
+  - Fixed SSO session handling and file-download reliability
+- date: '2026-07-23'
+  title: Component Replacement, SBOM Export Validation, and Platform Reliability
+    Improvements
+  url: https://docs.finitestate.io/changelog/component-replacement-sbom-validation-and-reliability-improvements
+  breaking: false
+  highlights:
+  - Component replacement now applies consistently across component views, new scans
+    and policy evaluation
+  - Match evidence added to CSV exports
+  - CI/CD plugins modernized onto the upgraded infrastructure
+- date: '2026-07-15'
+  title: Dual License Accuracy and Cleaner SBOM Exports
+  url: https://docs.finitestate.io/changelog/license-compliance-and-sbom-accuracy
+  breaking: false
+  highlights:
+  - Improved handling of compound license expressions such as "EPL-2.0 OR
+    GPL-2.0-with-classpath-exception"
+  - Removed placeholder entries from dependency trees so exports reflect only real
+    artifacts
+- date: '2026-06-10'
+  title: License Label Visibility and Scan Reliability
+  url: https://docs.finitestate.io/changelog/license-label-visibility-and-scan-reliability
+  breaking: false
+  highlights:
+  - License policy labels made visible to all users with component access
+  - Corrected CLI upload timing issues
+- date: '2026-06-05'
+  title: License Policy Labels and Bulk Component Exclusion
+  url: https://docs.finitestate.io/changelog/license-policy-labels-and-bulk-exclusion
+  breaking: false
+  highlights:
+  - Customizable labels for license policies
+  - Removed pagination limits on bulk triage operations
+- date: '2026-03-17'
+  title: Platform Update
+  url: https://docs.finitestate.io/changelog/2026-03-17-platform-update
+  breaking: false
+- date: '2025-11-25'
+  title: Nested Folders and CLI Security
+  url: https://docs.finitestate.io/changelog/2025/11/25/nested-folders-and-cli-security
+  breaking: false
+- date: '2025-11-06'
+  title: SBOM Download Performance
+  url: https://docs.finitestate.io/changelog/2025/11/06/sbom-download-performance
+  breaking: false
+- date: '2025-10-30'
+  title: Component Fixes and Improvements
+  url: https://docs.finitestate.io/changelog/2025/10/30/component-fixes-and-improvements
+  breaking: false
+themes:
+  api_affecting_entries:
+  - https://docs.finitestate.io/changelog/findings-api-accessible-versions
+  - https://docs.finitestate.io/changelog/bom-ordering-and-authentication-improvements
+  - https://docs.finitestate.io/changelog/system-authentication-improvements
+  - https://docs.finitestate.io/changelog/vulnerability-search-and-platform-reliability-fixes
+  cli_entries:
+  - https://docs.finitestate.io/changelog/cli-migration-and-export-fixes
+  - https://docs.finitestate.io/changelog/fs-cli-folder-auto-creation
+  - https://docs.finitestate.io/changelog/2025/11/25/nested-folders-and-cli-security

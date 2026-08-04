@@ -1,0 +1,63 @@
+generated: '2026-08-04'
+method: derived
+status: candidate
+source: a2a/finite-state-agent-card.json
+server:
+  name: finite-state
+  transport: http
+  url: null
+published: false
+search_performed:
+  date: '2026-08-04'
+  result: none
+  probes:
+  - {url: 'https://finitestate.io/api/mcp', status: 405}
+  - {url: 'https://finitestate.io/mcp', status: 405}
+  - {url: 'https://platform.finitestate.io/mcp', status: 404}
+  - {url: 'https://mcp.finitestate.io/mcp', status: 'DNS NXDOMAIN'}
+  note: 'The two 405s are the Next.js SPA rejecting POST on a non-existent route,
+    not an MCP server refusing a method — neither returned a JSON-RPC body. No MCP
+    server is advertised in llms.txt, in the agent card, in the documentation, or in
+    the FiniteStateInc GitHub organization.'
+note: 'Finite State publishes NO MCP server. The tools below are a candidate mapping
+  derived from the four real, live A2A methods, offered as a starting point if
+  Finite State chooses to expose the same read-only content surface over MCP. No
+  MCPServer pointer is wired into apis.yml, because doing so would assert a server
+  that does not exist.'
+tools:
+- name: list_content
+  description: List blog posts, resources, videos, events, podcasts, or news with
+    pagination and optional filters.
+  source_operation: a2a/finite-state-agent-card.json#content.list
+  input_schema_source: agent card legacySkills[0].methods[0].parameters
+  parameters:
+    type: 'post | resource | video | event | podcast | pressArticle'
+    limit: integer 1-100, default 10
+    offset: integer, default 0
+    category: string, optional
+    sort: 'newest | oldest | a-z | z-a'
+- name: get_content
+  description: Get a single content item by type and slug.
+  source_operation: a2a/finite-state-agent-card.json#content.get
+  parameters:
+    type: 'post | resource | video | event | podcast | pressArticle'
+    slug: string
+- name: search_content
+  description: Search across content types.
+  source_operation: a2a/finite-state-agent-card.json#content.search
+  parameters:
+    query: string
+    limit: integer 1-50, default 20
+    offset: integer
+    types: array of content types, optional
+- name: get_content_metadata
+  description: Get site metadata — canonical feed URLs and content-type info.
+  source_operation: a2a/finite-state-agent-card.json#content.metadata
+  parameters: {}
+excluded_from_candidate:
+- surface: finite-state:platform-api
+  reason: the OpenAPI at https://app.finitestate.io/api/docs/openapi.json is
+    auth-gated (401), so no operationIds are available to ground tools in
+- surface: finite-state:graphql-api
+  reason: introspection is not possible anonymously; only SDK-side operation names
+    are known

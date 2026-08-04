@@ -1,0 +1,73 @@
+generated: '2026-08-04'
+method: probed
+source: live anonymous probes of https://app.finitestate.io/api/public/v0/* and
+  https://finitestate.io/api/a2a on 2026-08-04
+format: vendor-json
+note: 'Finite State does not publish an error reference in its documentation and the
+  OpenAPI at /api/docs/openapi.json is auth-gated (401), so this catalogue records
+  only error envelopes actually observed on the wire. It is not RFC 9457 — neither
+  surface returns application/problem+json.'
+envelopes:
+- id: platform-rest
+  applies_to: finite-state:platform-api
+  content_type: application/json
+  shape:
+    valid: boolean
+    errors:
+    - error: string
+      instanceLocation: string
+      keywordLocation: string
+    requestId: string (uuid)
+  observed_example_fields: [valid, errors, requestId]
+  tracing: every error response carries a requestId UUID, usable when contacting
+    support
+  note: instanceLocation/keywordLocation are JSON Schema output-format keywords,
+    indicating request validation errors are reported as JSON Schema annotations
+- id: a2a-jsonrpc
+  applies_to: finite-state:a2a-content-api
+  content_type: application/json
+  spec: JSON-RPC 2.0
+  shape:
+    jsonrpc: '2.0'
+    error:
+      code: integer
+      message: string
+      data: string
+    id: request id
+  note: JSON-RPC errors are returned with HTTP 200; the error is carried in the body
+problems:
+- id: platform-missing-api-key
+  status: 401
+  envelope: platform-rest
+  title: API key required
+  detail: 'API key required. Provide via X-Authorization header or Authorization:
+    Bearer <token>'
+  remediation: Create an API token in platform Settings and send it as an
+    X-Authorization header or an Authorization Bearer token.
+  observed_on:
+  - https://app.finitestate.io/api/public/v0/
+  - https://app.finitestate.io/api/docs/openapi.json
+  - https://app.finitestate.io/api/public/v0/cli/download
+  note: This challenge is returned by an authentication gate that runs ahead of
+    routing, so a 401 on a given path is not evidence that the path exists.
+- id: a2a-method-not-found
+  code: -32601
+  http_status: 200
+  envelope: a2a-jsonrpc
+  title: Method not found
+  detail: 'Allowlist: content.list, content.get, content.search, content.metadata'
+  remediation: Call one of the four allowlisted methods declared in the agent card.
+  observed_on:
+  - https://finitestate.io/api/a2a
+- id: a2a-method-not-allowed
+  http_status: 405
+  title: Method Not Allowed
+  detail: The A2A endpoint accepts POST and OPTIONS only; GET returns 405.
+  remediation: Issue a POST with a JSON-RPC 2.0 body.
+  observed_on:
+  - https://finitestate.io/api/a2a
+gaps:
+- No public error-code reference page in the documentation.
+- No RFC 9457 application/problem+json on either surface.
+- The full 4xx/5xx catalogue for the REST API is only visible inside the
+  authenticated per-organization Swagger UI at https://[org].finitestate.io/swagger.
