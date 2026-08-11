@@ -90,6 +90,17 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: MCPServer
+  url: mcp/finite-state-mcp.yml
+- type: IssueTracker
+  url: https://github.com/FiniteStateInc/finite-state-sdk-python/issues
+- type: Releases
+  url: https://github.com/FiniteStateInc/finite-state-sdk-python/releases
+- type: ContributionGuide
+  url: https://github.com/FiniteStateInc/finite-state-sdk-python/blob/main/CONTRIBUTING.md
+- type: License
+  name: MIT
+  url: https://github.com/FiniteStateInc/finite-state-sdk-python/blob/main/LICENSE
 - type: Website
   url: https://finitestate.io
 - type: DeveloperPortal
