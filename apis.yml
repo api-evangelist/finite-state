@@ -11,6 +11,19 @@ description: 'Finite State is a product security platform for connected-device a
   tool, and CI/CD integrations for GitHub Actions, Jenkins and Azure DevOps. Finite
   State also publishes an anonymous, read-only A2A JSON-RPC content API described
   by an agent card at its canonical well-known path.'
+deliveryModel:
+  model: open-core
+  license: MIT
+  open_source: true
+  commercial: true
+  callable_host: false
+  label: Open core · an OSS project plus a commercial hosted product
+  confidence: high
+  source:
+  - license
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://finitestate.io/images/backgrounds/hero-space.jpg
 url: https://raw.githubusercontent.com/api-evangelist/finite-state/refs/heads/main/apis.yml
 x-type: company
