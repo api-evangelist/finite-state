@@ -84,3 +84,16 @@
       P856 not contradicting (Kin 2026-10-20 decision 2)
   status: not-a-workflow
   arazzo: null
+- slug: finite-state-jenkins-own
+  label: Jenkins (own)
+  partner: jenkins
+  partner_name: Jenkins (own)
+  category: Jenkins plugin
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://plugins.jenkins.io/finite-state-third-party-upload/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
