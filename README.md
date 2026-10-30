@@ -64,5 +64,104 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Finite State is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://forgeglobal.com/finite-state_stock/
+Finite State is a product security platform for connected-device and embedded software manufacturers. It performs binary and firmware composition analysis, source-code scanning and third-party scan ingestion, SBOM generation and lifecycle management (CycloneDX and SPDX), VEX, EPSS- and reachability-based vulnerability prioritization, license-policy enforcement, and evidence-backed compliance reporting for regimes such as the EU Cyber Resilience Act, FDA 524B, ISO 21434 and IEC 62443. Programmatic access is offered through a token-authenticated REST API on the platform host, a legacy GraphQL API with an official Python SDK, the fs-cli command-line tool, and CI/CD integrations for GitHub Actions, Jenkins and Azure DevOps. Finite State also publishes an anonymous, read-only A2A JSON-RPC content API described by an agent card at its canonical well-known path.
+
+**Areas:** Product Security · Software Supply Chain Security · SBOM · Firmware Analysis · Vulnerability Management · Binary Analysis · Connected Devices · Compliance · Cybersecurity · IoT · A2A
+
+## Finite State on APIs.io
+
+Everything profiled for Finite State is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/finite-state/](https://apis.io/providers/finite-state/)** — or go straight to one of the APIs or properties below.
+
+### APIs (3)
+
+- [Finite State Platform API](https://apis.io/apis/finite-state/platform-api/) — Token-authenticated REST API for the Finite State platform, served under /api/public/v0 on the platform host. Interactive Swagger documentation is published…
+- [Finite State A2A Content API](https://apis.io/apis/finite-state/a2a-content-api/) — Public, anonymous, read-only JSON-RPC 2.0 API exposing Finite State's published content: blog posts, resources, videos, events, podcasts and press articles.…
+- [Finite State GraphQL API](https://apis.io/apis/finite-state/graphql-api/) — GraphQL API historically documented at https://platform.finitestate.io/api/v1/graphql and still the transport used by the official Python SDK, which…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [finite-state](https://apis.io/servers/finite-state/finite-state/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Finite State Authentication](https://apis.io/security/finite-state/finite-state-authentication/)
+- [Finite State Domain Security](https://apis.io/security/finite-state/finite-state-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://finitestate.io)
+- [Documentation](https://docs.finitestate.io/docs/)
+- [Getting started](https://docs.finitestate.io/docs/get-started)
+- [API reference](https://docs.finitestate.io/docs/dev-tools/finite-state-api/)
+- [Pricing](https://finitestate.io/pricing)
+- [Sign up](https://finitestate.io/request-demo)
+- [Support](https://finitestate.io/support)
+- [Changelog](https://docs.finitestate.io/changelog)
+- [Blog](https://finitestate.io/feed)
+- [Terms of service](https://finitestate.io/terms-of-use)
+- [Privacy policy](https://finitestate.io/privacy-policy)
+- [GitHub](https://github.com/FiniteStateInc)
+- [Status](https://status.finitestate.io)
+
+## API Evangelist rating
+
+**Kin Score 37.9** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 78.6 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 34.2 |
+| Developer ergonomics | 57.7 |
+| Access clarity | 44.7 |
+
+**Agent readiness 12.1** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | conformant |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 24.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/finite-state/](https://apis.io/providers/finite-state/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Finite State: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/finite-state/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
